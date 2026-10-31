@@ -1,0 +1,115 @@
+/* League of Legends Skin Browser - Styles */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: system-ui, sans-serif; background: #1a1a2e; color: #eaeaea; min-height: 100vh; }
+.app-container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+.app-header { text-align: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 1px solid #333; }
+.app-title { font-size: 2rem; color: #c8962e; margin-bottom: 5px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.app-title svg { flex-shrink: 0; }
+.app-subtitle { color: #888; }
+.header-stats { color: #888; font-size: 0.9rem; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.stat-divider { margin: 0 10px; }
+
+.loading-overlay { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 60px; }
+.loading-spinner { width: 40px; height: 40px; border: 3px solid #333; border-top-color: #c8962e; border-radius: 50%; animation: spin 1s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading-text { margin-top: 15px; color: #888; }
+
+.error-container { text-align: center; padding: 40px; }
+.error-icon { color: #e74c3c; margin-bottom: 15px; }
+.error-title { margin-bottom: 10px; }
+.error-message { color: #888; margin-bottom: 20px; }
+
+.btn { padding: 10px 20px; border: none; border-radius: 6px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: all 0.2s; }
+.btn-primary { background: #c8962e; color: #1a1a2e; }
+.btn-primary:hover { background: #d4a83e; }
+.btn-back { background: #2a2a4a; color: #eaeaea; display: inline-flex; align-items: center; gap: 8px; }
+.btn-back:hover { background: #3a3a5a; }
+
+.view-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 15px; }
+.view-title { font-size: 1.5rem; color: #c8962e; }
+
+.search-container { position: relative; flex: 1; max-width: 400px; }
+.search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: #666; }
+.search-input { width: 100%; padding: 10px 12px 10px 44px; background: #2a2a4a; border: 1px solid #3a3a5a; border-radius: 6px; color: #eaeaea; font-size: 1rem; }
+.search-input:focus { outline: none; border-color: #c8962e; }
+
+.champion-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+.champion-card { background: #2a2a4a; border: 1px solid #3a3a5a; border-radius: 10px; padding: 20px; text-align: center; cursor: pointer; transition: all 0.2s; }
+.champion-card:hover { border-color: #c8962e; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.champion-card-icon { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; margin-bottom: 10px; border: 2px solid #3a3a5a; }
+.champion-card-name { font-weight: 600; font-size: 1rem; }
+.champion-card-skin-count { font-size: 0.85rem; color: #888; margin-top: 5px; }
+
+.skin-view .view-header { margin-bottom: 20px; }
+.champion-info { display: flex; align-items: center; gap: 15px; }
+.champion-avatar { width: 60px; height: 60px; border-radius: 50%; background: #3a3a5a; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: bold; color: #c8962e; overflow: hidden; }
+.champion-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.champion-details { flex: 1; }
+.skin-count { color: #888; font-size: 0.9rem; }
+
+.skin-carousel-container { position: relative; }
+.skin-carousel { display: flex; gap: 15px; overflow-x: auto; padding: 10px 5px 20px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.skin-carousel::-webkit-scrollbar { height: 8px; }
+.skin-carousel::-webkit-scrollbar-track { background: #1a1a2e; }
+.skin-carousel::-webkit-scrollbar-thumb { background: #3a3a5a; border-radius: 4px; }
+.skin-carousel::-webkit-scrollbar-thumb:hover { background: #c8962e; }
+
+.skin-card { flex: 0 0 auto; width: 200px; background: #2a2a4a; border: 1px solid #3a3a5a; border-radius: 10px; padding: 10px; text-align: center; cursor: pointer; scroll-snap-align: start; transition: all 0.2s; position: relative; }
+.skin-card:hover { border-color: #c8962e; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.skin-card-image-wrapper { position: relative; margin-bottom: 10px; border-radius: 6px; overflow: hidden; }
+.skin-card-image { width: 100%; height: 112px; object-fit: cover; display: block; }
+.skin-card-name { font-weight: 600; font-size: 0.9rem; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.skin-card-id { font-size: 0.75rem; color: #666; }
+
+/* Chroma indicators on skin cards */
+.skin-chromas { position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%); display: flex; gap: 3px; padding: 4px 8px; background: rgba(26, 26, 46, 0.9); border-radius: 12px; backdrop-filter: blur(4px); }
+.chroma-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.3); cursor: pointer; transition: transform 0.2s; }
+.chroma-dot:hover { transform: scale(1.3); z-index: 5; }
+.skin-base-badge { position: absolute; top: 8px; left: 8px; background: #c8962e; color: #1a1a2e; font-size: 0.65rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+/* Scroll indicators */
+.scroll-indicator { position: absolute; top: 50%; transform: translateY(-50%); width: 40px; height: 60px; background: linear-gradient(90deg, #1a1a2e, transparent); display: flex; align-items: center; justify-content: center; color: #888; cursor: pointer; z-index: 10; opacity: 0; transition: opacity 0.2s; }
+.scroll-indicator:hover { color: #c8962e; opacity: 1; }
+.scroll-left { left: 0; }
+.scroll-right { right: 0; background: linear-gradient(270deg, #1a1a2e, transparent); }
+.skin-carousel-container:hover .scroll-indicator { opacity: 0.5; }
+
+/* Chroma Selector Modal */
+.chroma-selector-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; z-index: 1000; opacity: 0; transition: opacity 0.2s ease; padding: 20px; }
+.chroma-selector { background: #2a2a4a; border: 1px solid #3a3a5a; border-radius: 16px; max-width: 90vw; max-height: 90vh; width: 800px; overflow: hidden; transform: scale(0.95); transition: transform 0.2s ease; }
+.chroma-selector-overlay[style*="opacity: 1"] .chroma-selector { transform: scale(1); }
+.chroma-selector-header { display: flex; justify-content: space-between; align-items: center; padding: 20px 24px; border-bottom: 1px solid #3a3a5a; }
+.chroma-selector-header h3 { color: #c8962e; font-size: 1.25rem; }
+.chroma-close { background: none; border: none; color: #888; font-size: 1.5rem; cursor: pointer; padding: 4px; line-height: 1; transition: color 0.2s; }
+.chroma-close:hover { color: #c8962e; }
+.chroma-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 16px; padding: 20px 24px; max-height: 60vh; overflow-y: auto; }
+.chroma-option { position: relative; background: #1e1e3a; border: 2px solid #3a3a5a; border-radius: 12px; overflow: hidden; cursor: pointer; transition: all 0.2s; }
+.chroma-option:hover { border-color: #c8962e; transform: translateY(-4px); box-shadow: 0 12px 30px rgba(0,0,0,0.4); }
+.chroma-option.base { border-color: #c8962e; }
+.chroma-option img { width: 100%; height: 101px; object-fit: cover; display: block; }
+.chroma-option-info { padding: 12px; }
+.chroma-option-name { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.chroma-option-id { display: block; font-size: 0.75rem; color: #888; }
+.chroma-badge { position: absolute; top: 8px; left: 8px; background: #c8962e; color: #1a1a2e; font-size: 0.6rem; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.chroma-color-indicator { position: absolute; bottom: 8px; right: 8px; width: 20px; height: 20px; border-radius: 50%; border: 2px solid rgba(0,0,0,0.3); box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+
+/* Toast notifications */
+.toast-container { position: fixed; bottom: 20px; right: 20px; z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+.toast { background: #2a2a4a; border: 1px solid #3a3a5a; border-radius: 8px; padding: 12px 20px; display: flex; align-items: center; gap: 10px; animation: slideIn 0.3s ease; min-width: 250px; }
+.toast.success { border-left: 4px solid #27ae60; }
+.toast.error { border-left: 4px solid #e74c3c; }
+.toast.info { border-left: 4px solid #3498db; }
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+.app-footer { text-align: center; margin-top: 40px; padding-top: 20px; border-top: 1px solid #333; color: #666; font-size: 0.85rem; }
+.app-footer a { color: #c8962e; }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .app-container { padding: 15px; }
+    .app-title { font-size: 1.5rem; }
+    .champion-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; }
+    .skin-card { width: 180px; }
+    .chroma-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    .chroma-selector { width: 95vw; max-height: 95vh; }
+}

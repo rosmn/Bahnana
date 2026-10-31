@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>League of Legends Skin Browser</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Beaufort+for+LOL:wght@400;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <svg class="title-icon" viewBox="0 0 24 24" fill="currentColor" width="32" height="32">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    League Skin Browser
+                </h1>
+                <p class="app-subtitle">Browse and download champion skins</p>
+            </div>
+            <div class="header-stats" id="headerStats" style="display: none;">
+                <span class="stat" id="championCount">0 Champions</span>
+                <span class="stat-divider">|</span>
+                <span class="stat" id="skinCount">0 Skins</span>
+            </div>
+        </header>
+
+        <!-- Loading State -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">Loading champion data...</p>
+        </div>
+
+        <!-- Error State -->
+        <div class="error-container" id="errorContainer" style="display: none;">
+            <svg class="error-icon" viewBox="0 0 24 24" fill="currentColor" width="48" height="48">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/>
+            </svg>
+            <h2 class="error-title">Failed to Load Data</h2>
+            <p class="error-message" id="errorMessage"></p>
+            <button class="btn btn-primary" id="retryBtn">Retry</button>
+        </div>
+
+        <!-- Main Content -->
+        <main class="app-main" id="appMain" style="display: none;">
+            <!-- Champion Grid View -->
+            <section class="view champion-view" id="championView">
+                <div class="view-header">
+                    <h2 class="view-title">Select a Champion</h2>
+                    <div class="search-container">
+                        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="M21 21l-4.35-4.35"/>
+                        </svg>
+                        <input type="text" class="search-input" id="championSearch" placeholder="Search champions..." autocomplete="off">
+                    </div>
+                </div>
+                <div class="champion-grid" id="championGrid" role="list">
+                    <!-- Champion cards will be rendered here -->
+                </div>
+            </section>
+
+            <!-- Skin Carousel View -->
+            <section class="view skin-view" id="skinView" style="display: none;">
+                <div class="view-header">
+                    <button class="btn btn-back" id="backBtn" aria-label="Back to champions">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="20" height="20">
+                            <path d="M19 12H5M12 19l-7-7 7-7"/>
+                        </svg>
+                        <span>Back</span>
+                    </button>
+                    <div class="champion-info">
+                        <div class="champion-avatar" id="championAvatar"></div>
+                        <div class="champion-details">
+                            <h2 class="view-title" id="selectedChampionName">Champion</h2>
+                            <p class="skin-count" id="skinCountDisplay">0 skins available</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="skin-carousel-container">
+                    <div class="skin-carousel" id="skinCarousel" role="list">
+                        <!-- Skin cards will be rendered here -->
+                    </div>
+                    <!-- Scroll indicators -->
+                    <div class="scroll-indicator scroll-left" id="scrollLeft" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                            <path d="M15 18l-6-6 6-6"/>
+                        </svg>
+                    </div>
+                    <div class="scroll-indicator scroll-right" id="scrollRight" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="24" height="24">
+                            <path d="M9 18l6-6-6-6"/>
+                        </svg>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Toast Notifications -->
+        <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Data from <a href="https://github.com/Alban1911/LeagueSkins" target="_blank" rel="noopener">Alban1911/LeagueSkins</a> • Not affiliated with Riot Games</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
