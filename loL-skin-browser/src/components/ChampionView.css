@@ -1,0 +1,18 @@
+/* Champion View Styles */
+.view-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.view-title {
+  font-size: 1.5rem;
+  color: #c8962e;
+}
+
+.champion-view .view-header {
+  margin-bottom: 20px;
+}

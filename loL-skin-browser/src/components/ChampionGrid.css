@@ -1,0 +1,57 @@
+/* Champion Grid Styles */
+.champion-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 15px;
+}
+
+.champion-card {
+  background: #2a2a4a;
+  border: 1px solid #3a3a5a;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.champion-card:hover {
+  border-color: #c8962e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.champion-card:focus {
+  outline: none;
+  border-color: #c8962e;
+  box-shadow: 0 0 0 2px #c8962e;
+}
+
+.champion-card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  border: 2px solid #3a3a5a;
+}
+
+.champion-card-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #eaeaea;
+}
+
+.champion-card-skin-count {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .champion-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+}

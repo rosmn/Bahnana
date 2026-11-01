@@ -1,0 +1,104 @@
+/* Skin Card Styles */
+.skin-card {
+  flex: 0 0 auto;
+  width: 200px;
+  background: #2a2a4a;
+  border: 1px solid #3a3a5a;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.skin-card:hover {
+  border-color: #c8962e;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.skin-card:focus {
+  outline: none;
+  border-color: #c8962e;
+  box-shadow: 0 0 0 2px #c8962e;
+}
+
+.skin-card-image-wrapper {
+  position: relative;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.skin-card-image {
+  width: 100%;
+  height: 112px;
+  object-fit: cover;
+  display: block;
+}
+
+.skin-card-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #eaeaea;
+}
+
+.skin-card-id {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+/* Chroma indicators on skin cards */
+.skin-chromas {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 3px;
+  padding: 4px 8px;
+  background: rgba(26, 26, 46, 0.9);
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+}
+
+.chroma-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.chroma-dot:hover {
+  transform: scale(1.3);
+  z-index: 5;
+}
+
+.skin-base-badge {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: #c8962e;
+  color: #1a1a2e;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .skin-card {
+    width: 180px;
+  }
+}

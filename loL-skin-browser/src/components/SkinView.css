@@ -1,0 +1,62 @@
+/* Skin View Styles */
+.skin-view .view-header {
+  margin-bottom: 20px;
+}
+
+.champion-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.champion-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #3a3a5a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #c8962e;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.champion-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.champion-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.skin-count {
+  color: #888;
+  font-size: 0.9rem;
+}
+
+.btn-back {
+  background: #2a2a4a;
+  color: #eaeaea;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn-back:hover {
+  background: #3a3a5a;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .champion-avatar {
+    width: 50px;
+    height: 50px;
+    font-size: 1.25rem;
+  }
+}

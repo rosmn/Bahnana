@@ -1,0 +1,73 @@
+/* Skin Carousel Styles */
+.skin-carousel-container {
+  position: relative;
+}
+
+.skin-carousel {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 10px 5px 20px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.skin-carousel::-webkit-scrollbar {
+  height: 8px;
+}
+
+.skin-carousel::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+
+.skin-carousel::-webkit-scrollbar-thumb {
+  background: #3a3a5a;
+  border-radius: 4px;
+}
+
+.skin-carousel::-webkit-scrollbar-thumb:hover {
+  background: #c8962e;
+}
+
+/* Scroll indicators */
+.scroll-indicator {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 60px;
+  background: linear-gradient(90deg, #1a1a2e, transparent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #888;
+  cursor: pointer;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.scroll-indicator:hover {
+  color: #c8962e;
+  opacity: 1;
+}
+
+.scroll-left {
+  left: 0;
+}
+
+.scroll-right {
+  right: 0;
+  background: linear-gradient(270deg, #1a1a2e, transparent);
+}
+
+.skin-carousel-container:hover .scroll-indicator {
+  opacity: 0.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .scroll-indicator {
+    display: none;
+  }
+}
