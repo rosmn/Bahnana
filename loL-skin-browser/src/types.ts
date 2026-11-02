@@ -1,5 +1,44 @@
 // League of Legends Skin Browser - Type Definitions
 
+// Tauri backend catalog types
+export interface SkinMetadata {
+  id: string;
+  champion_id: string;
+  champion_name: string;
+  name: string;
+  num: number;
+  chromas: ChromaMetadata[];
+}
+
+export interface ChromaMetadata {
+  id: string;
+  name: string;
+  colors: string[];
+}
+
+export interface ChampionCatalogEntry {
+  id: string;
+  key: string;
+  name: string;
+  title: string;
+  tags: string[];
+  skins: string[];
+}
+
+export interface SkinCatalog {
+  champions: Record<string, ChampionCatalogEntry>;
+  skins: Record<string, SkinMetadata>;
+  updated_at: string;
+}
+
+export interface DownloadedSkin {
+  skin_id: string;
+  champion_name: string;
+  skin_name: string;
+  zip_path: string;
+  applied: boolean;
+}
+
 export interface DDragonChampion {
   id: string;
   key: string;

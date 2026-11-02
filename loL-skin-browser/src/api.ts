@@ -9,7 +9,6 @@ import type {
 
 // API URLs
 const SKIN_DATA_URL = 'https://raw.githubusercontent.com/Alban1911/LeagueSkins/main/resources/default/skin_ids.json';
-const SKIN_FILE_BASE_URL = 'https://raw.githubusercontent.com/Alban1911/LeagueSkins/main/skins';
 const DDRAGON_VERSIONS_URL = 'https://ddragon.leagueoflegends.com/api/versions.json';
 const COMMUNITY_DRAGON_SKINS_URL = 'https://raw.communitydragon.org/latest/plugins/rcp-be-lol-game-data/global/default/v1/skins.json';
 
@@ -60,7 +59,7 @@ const CHROMA_COLORS: Record<string, string> = {
   'Challenger': '#e74c3c',
 };
 
-let ddragonVersion = '14.23.1';
+let ddragonVersion = '16.21.1';
 let ddragonChampions: DDragonChampion[] = [];
 let chromaInfoCache: ChromaCache = {};
 
@@ -116,10 +115,10 @@ export async function loadChromaInfo(): Promise<void> {
   try {
     const response = await fetch(COMMUNITY_DRAGON_SKINS_URL);
     if (response.ok) {
-      const data = await response.json();
+      const data = await response.json() as Record<string, { id: number; chromas?: Array<{ id: number; colors?: string[] }> }>;
       for (const [, skin] of Object.entries(data)) {
         if (!skin.chromas) continue;
-        for (const c of skin.chromas as any[]) {
+        for (const c of skin.chromas) {
           chromaInfoCache[c.id] = {
             colors: c.colors ?? [],
             parentId: skin.id
@@ -208,7 +207,7 @@ export function getSplashNum(skin: EnhancedSkin, allSkinData: Record<string, str
   if (!skin.isChroma) return skin.num;
 
   // Find base skin by matching baseName in allSkinData
-  const baseSkinEntry = Object.entries(allSkinData).find(([id, name]) => {
+  const baseSkinEntry = Object.entries(allSkinData).find(([, name]) => {
     const parsed = parseSkinName(name);
     return !parsed.isChroma && parsed.baseName === skin.chromaName;
   });
@@ -250,11 +249,12 @@ export function groupSkinsByLine(
         splashNum: skin.id % 1000
       };
     } else {
-      const splashNum = getSplashNum({ ...skin, isChroma: true, chromaName: parsed.chroma, num: skin.id % 1000, splashNum: skin.id % 1000 }, allSkinData);
+      const chromaName = parsed.chroma as string;
+      const splashNum = getSplashNum({ ...skin, isChroma: true, chromaName, num: skin.id % 1000, splashNum: skin.id % 1000 }, allSkinData);
       group.chromas.push({
         ...skin,
-        chromaName: parsed.chroma,
-        color: CHROMA_COLORS[parsed.chroma] || '#666',
+        chromaName,
+        color: CHROMA_COLORS[chromaName] || '#666',
         colors: chromaInfo?.colors || [],
         isChroma: true,
         num: skin.id % 1000,

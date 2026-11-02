@@ -7,10 +7,11 @@ import { getDDragonChampionId, getDDragonVersion, escapeHtml } from '../api';
 interface ChampionGridProps {
   champions: Champion[];
   onChampionSelect: (championId: number) => void;
-  ddragonVersion: string;
 }
 
-export function ChampionGrid({ champions, onChampionSelect, ddragonVersion }: ChampionGridProps) {
+export function ChampionGrid({ champions, onChampionSelect }: ChampionGridProps) {
+  const ddragonVersion = getDDragonVersion();
+
   const handleKeyDown = (e: React.KeyboardEvent, championId: number) => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();

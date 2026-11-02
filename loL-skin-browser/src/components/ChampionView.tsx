@@ -10,7 +10,6 @@ interface ChampionViewProps {
   searchQuery: string;
   onSearchChange: (query: string) => void;
   onChampionSelect: (championId: number) => void;
-  ddragonVersion: string;
   onSearchFocus: () => void;
 }
 
@@ -19,7 +18,6 @@ export function ChampionView({
   searchQuery,
   onSearchChange,
   onChampionSelect,
-  ddragonVersion,
   onSearchFocus
 }: ChampionViewProps) {
   return (
@@ -35,7 +33,6 @@ export function ChampionView({
       <ChampionGrid
         champions={champions}
         onChampionSelect={onChampionSelect}
-        ddragonVersion={ddragonVersion}
       />
     </section>
   );

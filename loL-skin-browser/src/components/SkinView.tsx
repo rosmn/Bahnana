@@ -3,16 +3,15 @@
 import './SkinView.css';
 import { SkinCarousel } from './SkinCarousel';
 import type { Champion, EnhancedSkin } from '../types';
-import { getDDragonChampionId, escapeHtml, generateColorFromString } from '../api';
+import { getDDragonChampionId, getDDragonVersion, escapeHtml, generateColorFromString } from '../api';
 
 interface SkinViewProps {
   champion: Champion;
   skinLines: { baseName: string; baseSkin: EnhancedSkin | null; chromas: EnhancedSkin[] }[];
   onBack: () => void;
-  onSkinSelect: (skinId: number, skinName: string) => Promise<void>;
-  onChromaSelect: (skinId: number, skinName: string) => Promise<void>;
+  onSkinSelect: (skinId: string, skinName: string) => Promise<void>;
+  onChromaSelect: (skinId: string, skinName: string) => Promise<void>;
   onShowChromaSelector: (baseSkin: EnhancedSkin | null, chromas: EnhancedSkin[]) => void;
-  ddragonVersion: string;
 }
 
 export function SkinView({
@@ -21,9 +20,9 @@ export function SkinView({
   onBack,
   onSkinSelect,
   onChromaSelect,
-  onShowChromaSelector,
-  ddragonVersion
+  onShowChromaSelector
 }: SkinViewProps) {
+  const ddragonVersion = getDDragonVersion();
   const ddragonId = getDDragonChampionId(champion.name);
   const iconUrl = `https://ddragon.leagueoflegends.com/cdn/${ddragonVersion}/img/champion/${ddragonId}.png`;
 
@@ -72,8 +71,8 @@ export function SkinView({
           const carousel = document.querySelector('.skin-carousel') as HTMLDivElement;
           if (carousel) carousel.scrollBy({ left: 300, behavior: 'smooth' });
         }}
-        onSkinSelect={(skin) => onSkinSelect(skin.id, skin.name)}
-        onChromaSelect={(chroma) => onChromaSelect(chroma.id, chroma.name)}
+        onSkinSelect={(skin) => onSkinSelect(skin.id.toString(), skin.name)}
+        onChromaSelect={(chroma) => onChromaSelect(chroma.id.toString(), chroma.name)}
         onShowChromaSelector={onShowChromaSelector}
       />
     </section>

@@ -21,7 +21,6 @@ function App() {
     skinLines,
     isLoading,
     error,
-    ddragonVersion,
     searchQuery,
     toast,
     chromaSelector,
@@ -37,13 +36,13 @@ function App() {
 
   const [toastKey, setToastKey] = useState(0);
 
-  const handleDownloadSkin = useCallback(async (skinId: number, skinName: string) => {
+  const handleDownloadSkin = useCallback(async (skinId: string, skinName: string) => {
     await downloadSkin(skinId, skinName);
     setToastKey(k => k + 1);
   }, [downloadSkin]);
 
-  const handleChromaSelect = useCallback((chroma: any) => {
-    handleDownloadSkin(chroma.id, chroma.name);
+  const handleChromaSelect = useCallback(async (chroma: any) => {
+    await handleDownloadSkin(chroma.id.toString(), chroma.name);
   }, [handleDownloadSkin]);
 
   const handleShowChromaSelector = useCallback((baseSkin: any, chromas: any[]) => {
@@ -52,7 +51,7 @@ function App() {
   }, [showChromaSelector, selectedChampion]);
 
   const handleChromaSelectorSelect = useCallback((skinId: number, skinName: string) => {
-    handleDownloadSkin(skinId, skinName);
+    handleDownloadSkin(skinId.toString(), skinName);
   }, [handleDownloadSkin]);
 
   return (
@@ -72,7 +71,6 @@ function App() {
             searchQuery={searchQuery}
             onSearchChange={setSearchQuery}
             onChampionSelect={selectChampion}
-            ddragonVersion={ddragonVersion}
             onSearchFocus={() => {}}
           />
         )}
@@ -85,7 +83,6 @@ function App() {
             onSkinSelect={handleDownloadSkin}
             onChromaSelect={handleChromaSelect}
             onShowChromaSelector={handleShowChromaSelector}
-            ddragonVersion={ddragonVersion}
           />
         )}
       </main>

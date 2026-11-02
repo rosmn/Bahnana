@@ -73,18 +73,19 @@ export function SkinCarousel({
       >
         {skinLines.map((line) => {
           if (line.baseSkin) {
+            const baseSkin = line.baseSkin;
             return (
               <SkinCard
-                key={line.baseSkin.id}
-                skin={line.baseSkin}
+                key={baseSkin.id}
+                skin={baseSkin}
                 ddragonChampionId={ddragonChampionId}
                 chromas={line.chromas}
                 isBaseSkin={true}
                 onClick={() => {
                   if (line.chromas.length > 0) {
-                    onShowChromaSelector(line.baseSkin, line.chromas);
+                    onShowChromaSelector(baseSkin, line.chromas);
                   } else {
-                    onSkinSelect(line.baseSkin);
+                    onSkinSelect(baseSkin);
                   }
                 }}
                 onChromaClick={(chroma) => onChromaSelect(chroma)}
@@ -92,9 +93,9 @@ export function SkinCarousel({
                   if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
                     if (line.chromas.length > 0) {
-                      onShowChromaSelector(line.baseSkin, line.chromas);
+                      onShowChromaSelector(baseSkin, line.chromas);
                     } else {
-                      onSkinSelect(line.baseSkin);
+                      onSkinSelect(baseSkin);
                     }
                   }
                 }}

@@ -1,0 +1,31 @@
+[package]
+name = "bahnana"
+version = "0.1.0"
+description = "League of Legends Skin Browser with Injection"
+authors = ["Robert Simion"]
+edition = "2021"
+
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+
+[dependencies]
+tauri = { version = "2", features = ["macros"] }
+tauri-plugin-dialog = "2"
+tauri-plugin-opener = "2"
+tauri-plugin-fs = "2"
+tauri-plugin-process = "2"
+tauri-plugin-shell = "2"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+ureq = { version = "2", features = ["json", "cookies"] }
+tokio = { version = "1", features = ["full"] }
+chrono = { version = "0.4", features = ["serde"] }
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+thiserror = "1.0"
+specta = { version = "0.6", features = ["derive", "serde"] }
+
+# For skin injection - we'll use the ltk-manager approach
+# The injector binary and hook DLL will be bundled
+ltk-manager-core = { path = "../ltk-manager/ltk-manager-core" }
+ltk-manager-runtime = { path = "../ltk-manager/ltk-manager-runtime" }
